@@ -1,5 +1,8 @@
 import Adapter.*;
 import Bridge.*;
+import Composite.ElementoMenu;
+import Composite.Menu;
+import Composite.Plato;
 
 
 public class Main {
@@ -22,6 +25,21 @@ public class Main {
         AlertaSMS.notificar();
         PromocionEmail.notificar();
         RecordatorioEmail.notificar();
+
+        System.out.println("------------EJERCICIO 7------------");
+        ElementoMenu Plato1 = new Plato("Fideos");
+        ElementoMenu Plato2 = new Plato("Asado");
+        ElementoMenu Plato3 = new Plato("Arroz");
+
+        Menu menuTardeLunes = new Menu("Lunes Tarde");
+        menuTardeLunes.añadirElemento(Plato1);
+        menuTardeLunes.añadirElemento(Plato2);
+
+        Menu menuLunes = new Menu("Lunes");
+        menuLunes.añadirElemento(menuTardeLunes);  //Menu de la tarde del lunes en el menu del lunes
+        menuLunes.añadirElemento(Plato3);
+
+        menuLunes.mostrar(" -");
 
         System.out.println("------------EJERCICIO 3------------");
 
