@@ -1,8 +1,7 @@
 import Adapter.*;
 import Bridge.*;
-import Composite.ElementoMenu;
-import Composite.Menu;
-import Composite.Plato;
+import Composite.*;
+import Decorator.*;
 
 
 public class Main {
@@ -42,6 +41,14 @@ public class Main {
         menuLunes.mostrar(" -");
 
         System.out.println("------------EJERCICIO 3------------");
+        Basico planBasico = new Basico();
+        HD hd = new HD(planBasico);
+        UltraHD ultrahd = new UltraHD(hd);
+        DescargaOffline descargaOffline = new DescargaOffline(ultrahd);
+        System.out.println(descargaOffline.nombre()+" cuesta $"+descargaOffline.precio());
+
+
+        System.out.println("------------EJERCICIO 4------------");
 
     }
 }
