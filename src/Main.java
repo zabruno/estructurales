@@ -2,6 +2,7 @@ import Adapter.*;
 import Bridge.*;
 import Composite.*;
 import Decorator.*;
+import Flyweight.*;
 
 
 public class Main {
@@ -31,12 +32,12 @@ public class Main {
         ElementoMenu Plato3 = new Plato("Arroz");
 
         Menu menuTardeLunes = new Menu("Lunes Tarde");
-        menuTardeLunes.añadirElemento(Plato1);
-        menuTardeLunes.añadirElemento(Plato2);
+        menuTardeLunes.anadirElemento(Plato1);
+        menuTardeLunes.anadirElemento(Plato2);
 
         Menu menuLunes = new Menu("Lunes");
-        menuLunes.añadirElemento(menuTardeLunes);  //Menu de la tarde del lunes en el menu del lunes
-        menuLunes.añadirElemento(Plato3);
+        menuLunes.anadirElemento(menuTardeLunes);  //Menu de la tarde del lunes en el menu del lunes
+        menuLunes.anadirElemento(Plato3);
 
         menuLunes.mostrar(" -");
 
@@ -49,6 +50,34 @@ public class Main {
 
 
         System.out.println("------------EJERCICIO 4------------");
+
+
+        System.out.println("------------EJERCICIO 5------------");
+
+        FabricaDeArboles fabrica = new FabricaDeArboles();
+        Arbol a1 = fabrica.obtenerArbol("Roble", "Rugosa", "Verde");
+        Arbol a4 = fabrica.obtenerArbol("Pino", "Lisa", "VerdeOscuro");
+        Arbol a5 = fabrica.obtenerArbol("Pino", "Lisa", "VerdeOscuro");
+
+
+        //Plantamos 1000 arboles
+        /*
+        int posy = 0;
+        int posx = 0;
+        for (int i = 0; i < 1_000_000; i++) {
+            // Alterno entre dos tipos
+            if (i % 2 == 0) {
+                fabrica.obtenerArbol("Roble", "Rugosa", "Verde").plantar(posx, posy);
+                posx++;
+            } else {
+                fabrica.obtenerArbol("Pino", "Lisa", "VerdeOscuro").plantar(posx, posy);
+                posy++;
+            }
+        }*/
+
+        System.out.println("Hay "+fabrica.cantidadArboles()+" arboles creados");
+
+
 
     }
 }

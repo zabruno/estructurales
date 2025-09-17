@@ -19,7 +19,7 @@ public class Menu implements ElementoMenu {
         this.nombre = nombre;
     }
 
-    public void añadirElemento(ElementoMenu elemento){
+    public void anadirElemento(ElementoMenu elemento){
         elementos.add(elemento);
     }
 
