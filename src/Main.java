@@ -2,7 +2,10 @@ import Adapter.*;
 import Bridge.*;
 import Composite.*;
 import Decorator.*;
+import Facade.*;
 import Flyweight.*;
+import Proxy.*;
+import java.util.Scanner;
 
 
 public class Main {
@@ -50,7 +53,18 @@ public class Main {
 
 
         System.out.println("------------EJERCICIO 4------------");
-
+        Scanner scanner = new Scanner(System.in);
+        // Crear los objetos base
+        Carrito carrito = new Carrito();
+        Pago pago = new Pago();       // Suponiendo que tu clase Pago tiene un constructor sin args
+        Envio envio = new Envio();    // Igual acá
+        // Creamos la fachada
+        TiendaFacade tienda = new TiendaFacade(carrito, pago, envio);
+        // Flujo de la tienda
+        tienda.gestionarProd(scanner);  // 1) Añadir productos
+        tienda.procesarPago();          // 2) Procesar el pago
+        tienda.coordEntrega();          // 3) Coordinar el envío
+        scanner.close();
 
         System.out.println("------------EJERCICIO 5------------");
 
@@ -58,8 +72,6 @@ public class Main {
         Arbol a1 = fabrica.obtenerArbol("Roble", "Rugosa", "Verde");
         Arbol a4 = fabrica.obtenerArbol("Pino", "Lisa", "VerdeOscuro");
         Arbol a5 = fabrica.obtenerArbol("Pino", "Lisa", "VerdeOscuro");
-
-
         //Plantamos 1000 arboles
         /*
         int posy = 0;
@@ -73,12 +85,20 @@ public class Main {
                 fabrica.obtenerArbol("Pino", "Lisa", "VerdeOscuro").plantar(posx, posy);
                 posy++;
             }
-        }*/
+        }
+        */
 
         System.out.println("Hay "+fabrica.cantidadArboles()+" arboles creados");
 
-
-
+        System.out.println("------------EJERCICIO 6------------");
+        String nombreArchivo = "factura_tienda.txt";
+        String[] usuariosAutorizadosInicial = {"Alicia", "Roberto"};
+        ArchivoProxy controlAcceso = new ArchivoProxy(nombreArchivo, usuariosAutorizadosInicial);
+        controlAcceso.agregarUsuarioAutorizado("Alberto");
+        controlAcceso.agregarUsuarioAutorizado("Marta");
+        System.out.println("\n=== Sistema de Acceso a Archivos ===");
+        controlAcceso.abrir("Sol");   // No autorizado
+        controlAcceso.abrir("Marta"); // Autorizado
     }
 }
 
